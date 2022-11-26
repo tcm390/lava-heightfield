@@ -65,7 +65,7 @@ const _createWaterMaterial = () => {
         float flowStrength = 0.1;
         float flowOffset = 0.;
 
-        vec2 posUv = (modelMatrix * vec4(pos, 1.0)).xz * 0.006;
+        vec2 posUv = (modelMatrix * vec4(pos, 1.0)).xz * 0.01;
         vec2 flowVector = texture2D(flowmapTexture, posUv).rg * 2. - 1.;
         flowVector *= flowStrength;
         float flowmap = texture2D(flowmapTexture, posUv * 0.1).a;
@@ -124,7 +124,7 @@ const _createWaterMaterial = () => {
           float theta = max(dot(viewIncidentDir, viewReflectDir), 0.0);
           float rf0 = 0.3;
           float reflectance = rf0 + (1.0 - rf0) * pow((1.0 - theta ), 5.0);
-          gl_FragColor = mix(vec4(1.0), gl_FragColor, reflectance * 1.5);
+          gl_FragColor = mix(vec4(1.0), gl_FragColor, reflectance * 2.0);
 
           
           ${THREE.ShaderChunk.logdepthbuf_fragment}
